@@ -9,6 +9,7 @@ import { requestLogger } from "./middlewares/logger";
 
 import UserRoute from "./routes/user.route";
 import AuthRoute from "./routes/auth.route";
+import { errorHandler } from "./middlewares/error.handler";
 
 const app = express();
 app.use(requestLogger);
@@ -18,5 +19,7 @@ app.use(cookieParser());
 
 app.use("/api/user", UserRoute);
 app.use("/api/auth", AuthRoute);
+
+app.use(errorHandler);
 
 export default app;
