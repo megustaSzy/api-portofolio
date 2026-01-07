@@ -14,18 +14,6 @@ export const UserService = {
     return user;
   },
 
-  async create(data: CreateUser) {
-    const exists = await UserRepository.findByEmail(data.email);
-    if (exists) throw CreateError("email sudah digunakan", 400);
-
-    const hashed = await bcrypt.hash(data.password, 10);
-
-    return UserRepository.create({
-      ...data,
-      password: hashed,
-    });
-  },
-
   async edit(id: number, data: UpdateUser) {
     const user = await UserRepository.findById(id);
     if (!user) throw CreateError("id tidak ditemukan", 404);

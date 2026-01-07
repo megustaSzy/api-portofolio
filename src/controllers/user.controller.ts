@@ -22,15 +22,6 @@ export const UserController = {
     }
   },
 
-  async create(req: Request, res: Response, next: NextFunction) {
-    try {
-      const user = await UserService.create(req.body);
-      return ResponseData.created(res, user);
-    } catch (error) {
-      next(error);
-    }
-  },
-
   async edit(req: Request, res: Response, next: NextFunction) {
     try {
       const id = Number(req.params.id);
