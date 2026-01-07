@@ -30,6 +30,10 @@ export const UserService = {
     const user = await UserRepository.findById(id);
     if (!user) throw CreateError("id tidak ditemukan", 404);
 
+    if (data.password) {
+      data.password = await bcrypt.hash(data.password, 10);
+    }
+
     return UserRepository.edit(id, data);
   },
 
