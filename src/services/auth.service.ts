@@ -11,10 +11,7 @@ export const AuthService = {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) throw CreateError("Email atau password salah", 401);
 
-    const token = signToken({
-      id: user.id,
-      email: user.email,
-    });
+    const token = signToken({ id: user.id, email: user.email });
 
     return token;
   },
